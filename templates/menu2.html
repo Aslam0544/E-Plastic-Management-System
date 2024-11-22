@@ -1,0 +1,54 @@
+<html>
+<!-- header -->
+<div class="header-top">
+	<div class="container">
+		<div class="bottom_header_right">
+            {{ request.session.username }}
+			<div class="header-top-righ">
+				<a href="/logout"> <span class="fa fa-sign-out"
+					aria-hidden="true"></span>Logout
+				</a>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<div class="header">
+	<div class="content white">
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#"
+						target="_blank">
+						<h1>
+							E-Plastic Management System
+						</h1>
+					</a>
+				</div>
+				<!--/.navbar-header-->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1" align="right">
+					<nav class="link-effect-2" id="link-effect-2" align="right">
+						<ul class="nav navbar-nav" >
+
+                            {% if request.session.role in "admin" %}
+                                <li><a href="/adduser">Add Agent</a></li>
+                                <li><a href="/viewusers">View Agent's</a></li>
+                            {% endif %}
+
+                            {% if request.session.role in "user" %}
+                                <li><a href="/addwastage">Add Wastage</a></li>
+                            {% endif %}
+
+                            <li><a href="/viewwastages">View Wastage's</a></li>
+
+						</ul>
+					</nav>
+				</div>
+				<!--/.navbar-collapse-->
+				<!--/.navbar-->
+			</div>
+		</nav>
+	</div>
+</div>

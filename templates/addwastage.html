@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% include "header.html" %}
+</head>
+<body>
+	{% include "menu2.html" %}
+	<div class="register-form-main">
+		<div class="container">
+			<div class="title-div">
+				<h3 class="tittle">
+					<span>A</span>dd <span>W</span>astage
+				</h3>
+				<div class="tittle-style" align="center">
+					<p style="color: red; size: 50px;">{{message}}</p>
+				</div>
+			</div>
+			<div class="login-form">
+
+                <form name="form" action="/addwastageaction/" method="post" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    <div class="">
+						<p>Wastage Name</p>
+						<input type="text" class="name" name="wastagename" required="required"/>
+					</div>
+
+					<div class="">
+						<p>Cost</p>
+						<input type="number" min="0" class="name" name="cost" required="required" style="width: 580px;height: 45px;"/>
+					</div>
+
+					<div class="">
+						<p>Quantity</p>
+						<input type="text" class="name" name="quantity" required="required"/>
+					</div>
+
+					<div class="">
+						<p>Category</p>
+						<select class="name" name="category" required="required" style="width: 580px;height: 45px;">
+                            <option value="">--select--</option>
+                            <option value="Engineering Material">Engineering Material</option>
+                            <option value="Speciality Products">Speciality Products</option>
+                            <option value="Orthotic Prosthetic">Orthotic Prosthetic</option>
+                            <option value="Orthotic prosthetic Sheet Material">Orthotic prosthetic Sheet Material</option>
+                            <option value="Sign POP Display Materials">Sign POP Display Materials</option>
+                        </select>
+					</div>
+
+                    <div class="">
+						<p>Address</p>
+                        <textarea class="name" name="address" required="required" style="width: 580px;height: 45px;"></textarea>
+					</div>
+
+                    <div class="">
+						<p>Collection Date</p>
+                        <input type="date" class="name" name="collectiondate" required="required"/>
+					</div>
+
+                    <div class="">
+						<p>Image</p>
+						<input type="file" class="name" name="image" required="required" style="width: 580px;height: 45px;"/>
+					</div>
+
+					<br />
+					<input type="submit" value="Add Wastage">
+
+				</form>
+			</div>
+		</div>
+	</div>
+	{% include "footer.html" %}
+</body>
+</html>

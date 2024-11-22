@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% include "header.html" %}
+</head>
+<body>
+	{% include "menu2.html" %}
+	<div class="register-form-main">
+		<div class="container">
+			<div class="title-div">
+				<h3 class="tittle">
+					<span>A</span>ssign <span>A</span>gent
+				</h3>
+				<div class="tittle-style" align="center">
+					<p style="color: red; size: 50px;">{{message}}</p>
+				</div>
+			</div>
+			<div class="login-form">
+				<form name="form" action="/assignwastageaction">
+                    {% csrf_token %}
+
+                    <input type="hidden" value="{{wastageid}}" name="wastageid">
+
+                    <div class="">
+						<p>Select Agent</p>
+                        <select name="assignedto" required>
+                            <option value="">--select--</option>
+                            {% for agent in agents %}
+                                <option value="{{ agent.username }}">{{ agent.username }}</option>
+                            {% endfor %}
+                        </select>
+					</div>
+					<br />
+					<input type="submit" value="Assign Agent">
+				</form>
+			</div>
+		</div>
+	</div>
+	{% include "footer.html" %}
+</body>
+</html>

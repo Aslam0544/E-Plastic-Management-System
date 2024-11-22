@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% include "header.html" %}
+</head>
+<body>
+	{% include "menu2.html" %}
+	<div class="register-form-main">
+		<div class="container">
+			<div class="title-div">
+				<h3 class="tittle">
+					<span>U</span>pdate <span>S</span>tatus
+				</h3>
+				<div class="tittle-style" align="center">
+					<p style="color: red; size: 50px;">{{message}}</p>
+				</div>
+			</div>
+			<div class="login-form">
+				<form name="form" action="/agentwastageupdateaction">
+                    {% csrf_token %}
+
+                    <input type="hidden" value="{{wastageid}}" name="wastageid">
+
+                    <div class="">
+						<p>Status</p>
+                        <textarea class="name" name="status" required="required"></textarea>
+					</div>
+					<br />
+					<input type="submit" value="Update Status">
+				</form>
+			</div>
+		</div>
+	</div>
+	{% include "footer.html" %}
+</body>
+</html>

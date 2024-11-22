@@ -1,0 +1,93 @@
+{% load  static%}
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% include "header.html" %}
+</head>
+<body>
+	{% include "menu2.html" %}
+	<div class="register-form-main">
+		<div class="container">
+			<div class="title-div">
+				<h3 class="tittle">
+					<span>V</span>iew <span>W</span>astages
+				</h3>
+				<div class="tittle-style" align="center">
+					<p style="color: red; size: 50px;">{{message}}</p>
+				</div>
+			</div>
+			<table id="customers">
+
+				<tr>
+                    <th>Date</th>
+					<th>Wastage Name</th>
+                    <th>Customer Name</th>
+                    <th>Mobile</th>
+                    <th>Customer Address</th>
+					<th>Cost</th>
+                    <th>Quantity</th>
+                    <th>Location</th>
+					<th>category</th>
+                    <th>Image</th>
+                    <th>Assigned To</th>
+                    <th>Collection Date</th>
+                    <th>Admin Status</th>
+                    <th>Status</th>
+
+                    {% if request.session.role in "admin" %}
+                        <th>Accept or Reject</th>
+                        <th>Assign</th>
+                    {% endif %}
+
+                    {% if request.session.role in "agent" %}
+                        <th>Update</th>
+                    {% endif %}
+
+                    {% if request.session.role not in "agent" %}
+                       <th>Delete</th>
+                    {% endif %}
+
+
+
+				</tr>
+
+				{% for wastage in wastages %}
+                    <tr>
+                        <td>{{wastage.date}}</td>
+                        <td>{{wastage.wastagename}}</td>
+                        <td>{{wastage.customername}}</td>
+                        <td>{{wastage.mobile}}</td>
+                        <td>{{wastage.customeraddress}}</td>
+                        <td>{{wastage.cost}}</td>
+                        <td>{{wastage.quantity}}</td>
+                        <td>{{wastage.address}}</td>
+                        <td>{{wastage.category}}</td>
+                        <td><img src="{% static ''%}{{ wastage.image }}" height="100" width="100"></td>
+                        <td>{{wastage.assignedto}}</td>
+                        <td>{{wastage.collectiondate}}</td>
+                        <td>{{wastage.adminstatus}}</td>
+                        <td>{{wastage.status}}</td>
+
+                        {% if request.session.role in "admin" %}
+                            <td><a href="/acceptorrejectwastage?wastageid={{wastage.id}}">Accept or Reject</a></td>
+                            <td><a href="/getwastage?wastageid={{wastage.id}}&type=assign">Assign</a></td>
+                        {% endif %}
+
+                        {% if request.session.role in "agent" %}
+                            <td><a href="/getwastage?wastageid={{wastage.id}}&type=update">Update</a></td>
+                        {% endif %}
+
+                        {% if request.session.role not in "agent" %}
+                            <td><a href="/deletewastage?wastageid={{wastage.id}}">Delete</a></td>
+                        {% endif %}
+
+
+                    </tr>
+                {% endfor %}
+
+			</table>
+		</div>
+	</div>
+	{% include "footer.html" %}
+</body>
+</html>
